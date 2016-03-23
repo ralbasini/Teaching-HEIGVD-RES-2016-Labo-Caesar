@@ -1,5 +1,16 @@
 # Teaching-HEIGVD-RES-2016-Labo-Caesar
 
+## COMMENTS
+
+* We achieved every requested objectives. Our programm runs smoothly and allows multiple clients to connect to the server. We use a `Message` class to encapsulate the message to be sent. A random `delta` is generated for the encryption, and the Message object is serialized using the Gson method. This serialized object is written by the client on the buffer, and then received by the server. The server will first unserialized it, and then uncrypt its payload using the random `delta` contained in the structure. The server then re-encrypts the uncrypted payload with a newly generated `delta`, and send it to the client. The clients repeats the unencryption process, and displays the plain message.
+
+* We just have a small issue on some encrypted messages. We wanted our message encryption to work not only on alphabetical characters, but on special characters too (!, ?, accentuated letters, aso...). Unfortunately, the characters after 'z' in the ASCII table are not supported by the JDK, resulting in some encryption errors when applying the caesar method on some lowercase characters whith some delta. 
+
+* To resolve this bug, we should have a cyclic implementation on the alphabetical characters only. There wouldn't be much trouble fixing it, but as said by the assistant, it wasn't the purpose of this lab. In the meantime, a workaround is to type the message in UPPER CASE. Our encryption works perfectly fine in that case.
+
+* See the `class.png` and `sequence.png` files for better understanding of our implementation.
+
+* ALBASINI Romain, SERNEELS Guillaume
 
 ## Objective
 
